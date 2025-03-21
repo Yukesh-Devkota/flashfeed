@@ -15,7 +15,7 @@ document.querySelectorAll('nav a').forEach(anchor => {
 // Follower count handling
 const followerNumber = document.getElementById('follower-number');
 if (followerNumber) {
-    const fallbackCount = 164798; // Fallback if API fails
+    const fallbackCount = 164798;
 
     function animateCount(targetCount) {
         let count = 0;
@@ -36,12 +36,21 @@ if (followerNumber) {
 
     async function fetchFollowerCount() {
         try {
+            console.log('Fetching follower count from /api/followers');
             const response = await fetch('/api/followers');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
             const data = await response.json();
-            if (data.error) throw new Error(data.error);
-            return data.count || fallbackCount;
+            if (data.error) {
+                console.error('API Endpoint Error:', data.error);
+                return fallbackCount;
+            }
+            const count = data.count || fallbackCount;
+            console.log('Received Count:', count);
+            return count;
         } catch (error) {
-            console.error('Fetch Error:', error);
+            console.error('Client Fetch Error:', error.message);
             return fallbackCount;
         }
     }
@@ -50,7 +59,8 @@ if (followerNumber) {
         if (entries[0].isIntersecting) {
             fetchFollowerCount().then(targetCount => {
                 animateCount(targetCount);
-            }).catch(() => {
+            }).catch((error) => {
+                console.error('Unexpected Error:', error);
                 animateCount(fallbackCount);
             });
             observer.disconnect();
