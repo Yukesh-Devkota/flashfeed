@@ -39,7 +39,8 @@ if (followerNumber) {
             console.log('Fetching follower count from /api/followers');
             const response = await fetch('/api/followers');
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
             }
             const data = await response.json();
             if (data.error) {
