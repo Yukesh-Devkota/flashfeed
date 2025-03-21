@@ -9,87 +9,66 @@ body {
     color: #fff;
     overflow-x: hidden;
     position: relative;
-    background: #0a0a0a; /* Deep, professional black */
+    background: #0d0d0d;
     line-height: 1.6;
 }
 
-/* New 3D Background Theme */
+/* 3D Animated Background */
 .background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #0a0a0a 0%, #1e1e2f 50%, #2a1b3d 100%); /* Sophisticated gradient */
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d, #2d0047);
     z-index: -1;
     overflow: hidden;
-    perspective: 1500px; /* Enhanced 3D depth */
+    perspective: 1000px; /* Adds 3D depth */
 }
 
-.grid-layer {
+.background::before {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100" y2="100" stroke="rgba(100,150,255,0.2)" stroke-width="1"/><line x1="0" y1="100" x2="100" y2="0" stroke="rgba(100,150,255,0.2)" stroke-width="1"/></svg>') repeat;
-    background-size: 80px 80px; /* Tight, professional grid */
-    animation: gridShift 40s infinite linear;
-    opacity: 0.6;
-    transform: translateZ(-200px) rotateX(20deg); /* 3D tilt */
-    filter: blur(2px); /* Softens the grid */
-}
-
-.orb-layer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(100, 150, 255, 0.3), transparent 60%);
-    animation: orbPulse 15s infinite ease-in-out;
-    opacity: 0.7;
-    transform: translateZ(-150px);
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(0, 255, 204, 0.25), transparent 60%);
+    animation: moveBackground 20s infinite linear;
 }
 
 .particle-layer {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1.5" fill="rgba(200,220,255,0.4)"/></svg>') repeat;
-    background-size: 50px 50px;
-    animation: particleDrift 30s infinite linear;
-    opacity: 0.5;
-    transform: translateZ(-100px);
-    mix-blend-mode: screen; /* Light blending for professionalism */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="2" fill="rgba(0,255,204,0.3)"/></svg>') repeat;
+    animation: particleFlow 25s infinite linear;
+    opacity: 0.6;
+    transform: translateZ(-50px); /* 3D effect */
 }
 
-.glow-overlay {
+.cube-layer {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(100, 150, 255, 0.15), transparent 80%);
-    animation: glowFade 10s infinite alternate;
-    transform: translateZ(-50px);
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="6" height="6" fill="none" stroke="rgba(255,0,255,0.25)" stroke-width="1"/></svg>') repeat;
+    animation: cubeFloat 30s infinite ease-in-out;
+    opacity: 0.7;
+    transform: translateZ(-100px); /* Deeper 3D effect */
 }
 
-/* Background Animations */
-@keyframes gridShift {
-    0% { background-position: 0 0; transform: translateZ(-200px) rotateX(20deg); }
-    50% { background-position: 80px -80px; transform: translateZ(-180px) rotateX(25deg); }
-    100% { background-position: 0 0; transform: translateZ(-200px) rotateX(20deg); }
+@keyframes moveBackground {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@keyframes orbPulse {
-    0% { transform: translateZ(-150px) scale(1); opacity: 0.7; }
-    50% { transform: translateZ(-130px) scale(1.1); opacity: 0.9; }
-    100% { transform: translateZ(-150px) scale(1); opacity: 0.7; }
-}
-
-@keyframes particleDrift {
+@keyframes particleFlow {
     0% { background-position: 0 0; }
-    100% { background-position: 100px 100px; }
+    100% { background-position: 120px 120px; }
 }
 
-@keyframes glowFade {
-    0% { opacity: 0.1; }
-    100% { opacity: 0.25; }
+@keyframes cubeFloat {
+    0% { background-position: 0 0; transform: translateZ(-100px) scale(1); }
+    50% { transform: translateZ(-80px) scale(1.1); }
+    100% { background-position: -100px -100px; transform: translateZ(-100px) scale(1); }
 }
 
 /* Header */
@@ -98,49 +77,45 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 30px 80px;
-    background: rgba(10, 10, 10, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     position: sticky;
     top: 0;
     z-index: 10;
-    box-shadow: 0 5px 25px rgba(100, 150, 255, 0.3); /* Professional blue glow */
-    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 255, 204, 0.2);
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .logo-img {
-    width: 70px;
-    height: 70px;
-    transition: transform 0.4s ease, filter 0.4s ease;
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
 }
 
 .logo-img:hover {
-    transform: scale(1.2) rotate(5deg);
-    filter: drop-shadow(0 0 15px rgba(100, 150, 255, 0.8));
+    transform: scale(1.2);
 }
 
 .logo-text {
     font-family: 'Orbitron', sans-serif;
     font-size: 2.8em;
-    color: #6496ff; /* Professional blue */
+    color: #00ffcc;
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(100, 150, 255, 0.6);
-    transition: color 0.4s ease, text-shadow 0.4s ease;
+    transition: color 0.3s ease;
 }
 
 .logo-text:hover {
-    color: #c8dcff;
-    text-shadow: 0 0 20px rgba(200, 220, 255, 0.9);
+    color: #ff00ff;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 50px;
+    gap: 40px;
 }
 
 nav a {
@@ -148,7 +123,7 @@ nav a {
     text-decoration: none;
     font-size: 1.4em;
     position: relative;
-    transition: color 0.4s ease, transform 0.4s ease;
+    transition: color 0.3s ease;
 }
 
 nav a::after {
@@ -156,10 +131,10 @@ nav a::after {
     position: absolute;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #6496ff, #c8dcff);
-    bottom: -6px;
+    background: #00ffcc;
+    bottom: -5px;
     left: 0;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 nav a:hover::after {
@@ -167,8 +142,7 @@ nav a:hover::after {
 }
 
 nav a:hover {
-    color: #6496ff;
-    transform: translateY(-2px);
+    color: #00ffcc;
 }
 
 /* Hero Section */
@@ -184,66 +158,59 @@ nav a:hover {
 
 .hero h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 6.5em;
-    background: linear-gradient(45deg, #6496ff, #c8dcff, #6496ff);
+    font-size: 6em;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff);
     -webkit-background-clip: text;
     color: transparent;
-    margin-bottom: 25px;
-    text-shadow: 0 0 20px rgba(100, 150, 255, 0.7);
-    animation: fadeIn 1.5s ease-in, textPulse 4s infinite alternate;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in;
 }
 
 .hero p {
-    font-size: 2.3em;
-    margin-bottom: 45px;
-    color: #d0d0d0;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    color: #e0e0e0;
     animation: fadeIn 2s ease-in;
 }
 
 .cta {
-    padding: 20px 55px;
-    font-size: 1.7em;
-    background: linear-gradient(45deg, #6496ff, #c8dcff, #6496ff);
-    background-size: 200% 200%;
+    padding: 20px 50px;
+    font-size: 1.6em;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff);
     border: none;
     border-radius: 50px;
-    color: #0a0a0a;
+    color: #0d0d0d;
     cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, background-position 0.4s ease;
-    animation: gradientFlow 5s infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 2s infinite;
 }
 
 .cta:hover {
     transform: scale(1.15);
-    box-shadow: 0 0 40px rgba(100, 150, 255, 0.9);
-    background-position: 100% 100%;
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.8);
 }
 
 .follower-count {
-    margin-top: 35px;
-    font-size: 1.9em;
-    color: #6496ff;
-    text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+    margin-top: 30px;
+    font-size: 1.8em;
+    color: #00ffcc;
     animation: fadeIn 2.5s ease-in;
 }
 
 #follower-number {
     font-weight: bold;
-    color: #c8dcff;
+    color: #ff00ff;
     font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 10px rgba(200, 220, 255, 0.6);
 }
 
 /* About Us Section */
 .about-us {
-    padding: 130px 80px;
+    padding: 120px 80px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.65);
 }
 
 .about-content {
@@ -253,95 +220,88 @@ nav a:hover {
 
 .about-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 4.8em;
-    background: linear-gradient(45deg, #6496ff, #c8dcff, #6496ff);
+    font-size: 4.5em;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff);
     -webkit-background-clip: text;
     color: transparent;
-    margin-bottom: 45px;
-    text-shadow: 0 0 20px rgba(100, 150, 255, 0.7);
-    animation: fadeIn 1s ease-in, textPulse 4s infinite alternate;
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease-in;
 }
 
 .about-intro {
-    font-size: 2.1em;
-    margin-bottom: 65px;
-    color: #d0d0d0;
+    font-size: 2em;
+    margin-bottom: 60px;
+    color: #e0e0e0;
 }
 
 .about-intro span {
-    background: linear-gradient(45deg, #6496ff, #c8dcff);
+    background: linear-gradient(45deg, #00ffcc, #ff00ff);
     -webkit-background-clip: text;
     color: transparent;
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
 }
 
 .about-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 55px;
-    margin-bottom: 65px;
+    gap: 50px;
+    margin-bottom: 60px;
 }
 
 .about-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 55px;
-    border-radius: 20px;
-    border: 1px solid rgba(100, 150, 255, 0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 50px;
+    border-radius: 25px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
     animation: cardFadeIn 1.5s ease-in;
 }
 
 .about-card:hover {
     transform: translateY(-15px);
-    box-shadow: 0 0 35px rgba(100, 150, 255, 0.7);
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .about-card h3 {
-    font-size: 2.3em;
-    color: #6496ff;
+    font-size: 2.2em;
+    color: #00ffcc;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
 }
 
 .about-card p {
-    font-size: 1.35em;
+    font-size: 1.3em;
 }
 
 .founder {
-    background: linear-gradient(45deg, #6496ff, #c8dcff, #6496ff);
-    background-size: 200% 200%;
-    padding: 45px;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff);
+    padding: 40px;
     border-radius: 20px;
-    color: #0a0a0a;
-    animation: fadeIn 2s ease-in, gradientFlow 6s infinite;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    color: #0d0d0d;
+    animation: fadeIn 2s ease-in;
+    transition: transform 0.3s ease;
 }
 
 .founder:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 30px rgba(100, 150, 255, 0.8);
+    transform: scale(1.05);
 }
 
 .founder h4 {
-    font-size: 2.1em;
+    font-size: 2em;
     margin-bottom: 15px;
 }
 
 .founder p {
-    font-size: 1.35em;
+    font-size: 1.3em;
 }
 
 /* Footer */
 footer {
-    padding: 70px 80px;
-    background: rgba(10, 10, 10, 0.9);
+    padding: 60px 80px;
+    background: rgba(0, 0, 0, 0.95);
     text-align: center;
-    border-top: 2px solid rgba(100, 150, 255, 0.3);
+    border-top: 1px solid rgba(0, 255, 204, 0.25);
     position: relative;
     z-index: 5;
-    backdrop-filter: blur(10px);
 }
 
 .footer-content {
@@ -350,40 +310,38 @@ footer {
 }
 
 .footer-content p {
-    font-size: 1.25em;
-    margin-bottom: 20px;
-    color: #d0d0d0;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #e0e0e0;
 }
 
 .footer-content a {
-    color: #6496ff;
+    color: #00ffcc;
     text-decoration: none;
-    transition: color 0.4s ease, text-shadow 0.4s ease;
+    transition: color 0.3s ease;
 }
 
 .footer-content a:hover {
-    color: #c8dcff;
-    text-shadow: 0 0 10px rgba(200, 220, 255, 0.7);
+    color: #ff00ff;
 }
 
 .social-links {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .social-links a {
-    margin: 0 25px;
-    font-size: 1.5em;
-    transition: transform 0.4s ease, color 0.4s ease;
+    margin: 0 20px;
+    font-size: 1.4em;
+    transition: transform 0.3s ease;
 }
 
 .social-links a:hover {
-    transform: translateY(-6px) scale(1.1);
-    color: #c8dcff;
+    transform: translateY(-5px);
 }
 
 /* Animations */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(35px); }
+    0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
@@ -392,13 +350,8 @@ footer {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes gradientFlow {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-}
-
-@keyframes textPulse {
-    0% { text-shadow: 0 0 15px rgba(100, 150, 255, 0.7); }
-    100% { text-shadow: 0 0 25px rgba(200, 220, 255, 0.9); }
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); }
+    100% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
 }
