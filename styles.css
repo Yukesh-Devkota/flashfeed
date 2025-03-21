@@ -13,62 +13,66 @@ body {
     line-height: 1.6;
 }
 
-/* 3D Animated Background */
+/* Enhanced 3D Animated Background */
 .background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #1a1a1a, #0d0d0d, #2d0047);
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #2d0047 100%);
     z-index: -1;
     overflow: hidden;
-    perspective: 1000px; /* Adds 3D depth */
+    perspective: 1200px; /* Increased for deeper 3D effect */
 }
 
 .background::before {
     content: '';
     position: absolute;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(0, 255, 204, 0.25), transparent 60%);
-    animation: moveBackground 20s infinite linear;
+    width: 400%; /* Wider for more dynamic motion */
+    height: 400%;
+    background: radial-gradient(circle, rgba(0, 255, 204, 0.4), transparent 70%);
+    animation: moveBackground 15s infinite ease-in-out; /* Faster and smoother */
+    filter: blur(20px); /* Soft glow effect */
 }
 
 .particle-layer {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="2" fill="rgba(0,255,204,0.3)"/></svg>') repeat;
-    animation: particleFlow 25s infinite linear;
-    opacity: 0.6;
-    transform: translateZ(-50px); /* 3D effect */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="3" fill="rgba(0,255,204,0.5)"/></svg>') repeat;
+    animation: particleFlow 20s infinite linear;
+    opacity: 0.8; /* More visible particles */
+    transform: translateZ(-70px);
+    mix-blend-mode: overlay; /* Adds a futuristic blend */
 }
 
 .cube-layer {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="6" height="6" fill="none" stroke="rgba(255,0,255,0.25)" stroke-width="1"/></svg>') repeat;
-    animation: cubeFloat 30s infinite ease-in-out;
-    opacity: 0.7;
-    transform: translateZ(-100px); /* Deeper 3D effect */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" fill="none" stroke="rgba(255,0,255,0.4)" stroke-width="1.5"/></svg>') repeat;
+    animation: cubeFloat 25s infinite ease-in-out;
+    opacity: 0.85;
+    transform: translateZ(-120px);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.3)); /* Glowing cubes */
 }
 
 @keyframes moveBackground {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.05); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
 }
 
 @keyframes particleFlow {
     0% { background-position: 0 0; }
-    100% { background-position: 120px 120px; }
+    100% { background-position: 150px 150px; } /* Faster particle movement */
 }
 
 @keyframes cubeFloat {
-    0% { background-position: 0 0; transform: translateZ(-100px) scale(1); }
-    50% { transform: translateZ(-80px) scale(1.1); }
-    100% { background-position: -100px -100px; transform: translateZ(-100px) scale(1); }
+    0% { background-position: 0 0; transform: translateZ(-120px) scale(1); }
+    50% { background-position: -80px -80px; transform: translateZ(-90px) scale(1.15); }
+    100% { background-position: -160px -160px; transform: translateZ(-120px) scale(1); }
 }
 
 /* Header */
@@ -77,64 +81,68 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 30px 80px;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 0.9);
     position: sticky;
     top: 0;
     z-index: 10;
-    box-shadow: 0 4px 20px rgba(0, 255, 204, 0.2);
+    box-shadow: 0 6px 25px rgba(0, 255, 204, 0.3); /* Stronger shadow */
+    backdrop-filter: blur(10px); /* Glassy effect */
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .logo-img {
-    width: 60px;
-    height: 60px;
-    transition: transform 0.3s ease;
+    width: 70px; /* Slightly larger */
+    height: 70px;
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .logo-img:hover {
-    transform: scale(1.2);
+    transform: scale(1.3) rotate(10deg); /* More playful hover */
+    filter: brightness(1.5) drop-shadow(0 0 10px #00ffcc);
 }
 
 .logo-text {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.8em;
+    font-size: 3em; /* Bigger for impact */
     color: #00ffcc;
     text-transform: uppercase;
-    transition: color 0.3s ease;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.7); /* Glowing text */
+    transition: color 0.4s ease, text-shadow 0.4s ease;
 }
 
 .logo-text:hover {
     color: #ff00ff;
+    text-shadow: 0 0 25px rgba(255, 0, 255, 0.9);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 50px; /* More spacing */
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.4em;
+    font-size: 1.5em;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.4s ease, transform 0.4s ease;
 }
 
 nav a::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    background: #00ffcc;
-    bottom: -5px;
+    height: 3px; /* Thicker underline */
+    background: linear-gradient(90deg, #00ffcc, #ff00ff); /* Gradient underline */
+    bottom: -8px;
     left: 0;
-    transition: width 0.3s ease;
+    transition: width 0.4s ease;
 }
 
 nav a:hover::after {
@@ -143,6 +151,7 @@ nav a:hover::after {
 
 nav a:hover {
     color: #00ffcc;
+    transform: translateY(-3px); /* Slight lift on hover */
 }
 
 /* Hero Section */
@@ -154,46 +163,52 @@ nav a:hover {
     align-items: center;
     text-align: center;
     padding: 0 20px;
+    background: radial-gradient(circle at center, rgba(0, 255, 204, 0.15), transparent 70%); /* Subtle glow */
 }
 
 .hero h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 6em;
-    background: linear-gradient(45deg, #00ffcc, #ff00ff);
+    font-size: 7em; /* Bigger for wow factor */
+    background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ffcc);
     -webkit-background-clip: text;
     color: transparent;
-    margin-bottom: 20px;
-    animation: fadeIn 1.5s ease-in;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+    animation: fadeIn 1.5s ease-in, textGlow 3s infinite alternate;
 }
 
 .hero p {
-    font-size: 2.2em;
-    margin-bottom: 40px;
+    font-size: 2.5em;
+    margin-bottom: 50px;
     color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     animation: fadeIn 2s ease-in;
 }
 
 .cta {
-    padding: 20px 50px;
-    font-size: 1.6em;
-    background: linear-gradient(45deg, #00ffcc, #ff00ff);
+    padding: 22px 60px;
+    font-size: 1.8em;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ffcc);
+    background-size: 200% 200%;
     border: none;
     border-radius: 50px;
     color: #0d0d0d;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: pulse 2s infinite;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-position 0.4s ease;
+    animation: pulse 2s infinite, gradientShift 4s infinite;
 }
 
 .cta:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 40px rgba(0, 255, 204, 0.8);
+    transform: scale(1.2);
+    box-shadow: 0 0 50px rgba(0, 255, 204, 0.9), 0 0 20px rgba(255, 0, 255, 0.7);
+    background-position: 100% 100%;
 }
 
 .follower-count {
-    margin-top: 30px;
-    font-size: 1.8em;
+    margin-top: 40px;
+    font-size: 2em;
     color: #00ffcc;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
     animation: fadeIn 2.5s ease-in;
 }
 
@@ -201,37 +216,41 @@ nav a:hover {
     font-weight: bold;
     color: #ff00ff;
     font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
 }
 
 /* About Us Section */
 .about-us {
-    padding: 120px 80px;
+    padding: 140px 80px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px); /* Subtle blur effect */
 }
 
 .about-content {
-    max-width: 1400px;
+    max-width: 1500px;
     text-align: center;
 }
 
 .about-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 4.5em;
-    background: linear-gradient(45deg, #00ffcc, #ff00ff);
+    font-size: 5em;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ffcc);
     -webkit-background-clip: text;
     color: transparent;
-    margin-bottom: 40px;
-    animation: fadeIn 1s ease-in;
+    margin-bottom: 50px;
+    text-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    animation: fadeIn 1s ease-in, textGlow 3s infinite alternate;
 }
 
 .about-intro {
-    font-size: 2em;
-    margin-bottom: 60px;
+    font-size: 2.2em;
+    margin-bottom: 70px;
     color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .about-intro span {
@@ -239,119 +258,138 @@ nav a:hover {
     -webkit-background-clip: text;
     color: transparent;
     font-weight: bold;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
 }
 
 .about-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-bottom: 60px;
+    gap: 60px;
+    margin-bottom: 70px;
 }
 
 .about-card {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 50px;
-    border-radius: 25px;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 60px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 255, 204, 0.3); /* Subtle border */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
     animation: cardFadeIn 1.5s ease-in;
 }
 
 .about-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
-    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-20px);
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.8), 0 0 20px rgba(255, 0, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .about-card h3 {
-    font-size: 2.2em;
+    font-size: 2.5em;
     color: #00ffcc;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
 }
 
 .about-card p {
-    font-size: 1.3em;
+    font-size: 1.4em;
 }
 
 .founder {
-    background: linear-gradient(45deg, #00ffcc, #ff00ff);
-    padding: 40px;
-    border-radius: 20px;
+    background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ffcc);
+    background-size: 200% 200%;
+    padding: 50px;
+    border-radius: 25px;
     color: #0d0d0d;
-    animation: fadeIn 2s ease-in;
-    transition: transform 0.3s ease;
+    animation: fadeIn 2s ease-in, gradientShift 5s infinite;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .founder:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.9);
 }
 
 .founder h4 {
-    font-size: 2em;
-    margin-bottom: 15px;
+    font-size: 2.2em;
+    margin-bottom: 20px;
 }
 
 .founder p {
-    font-size: 1.3em;
+    font-size: 1.4em;
 }
 
 /* Footer */
 footer {
-    padding: 60px 80px;
-    background: rgba(0, 0, 0, 0.95);
+    padding: 80px 80px;
+    background: rgba(0, 0, 0, 0.9);
     text-align: center;
-    border-top: 1px solid rgba(0, 255, 204, 0.25);
+    border-top: 2px solid rgba(0, 255, 204, 0.4); /* Bolder border */
     position: relative;
     z-index: 5;
+    backdrop-filter: blur(8px);
 }
 
 .footer-content {
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
 .footer-content p {
-    font-size: 1.2em;
-    margin-bottom: 15px;
+    font-size: 1.3em;
+    margin-bottom: 20px;
     color: #e0e0e0;
 }
 
 .footer-content a {
     color: #00ffcc;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.4s ease, text-shadow 0.4s ease;
 }
 
 .footer-content a:hover {
     color: #ff00ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
 }
 
 .social-links {
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .social-links a {
-    margin: 0 20px;
-    font-size: 1.4em;
-    transition: transform 0.3s ease;
+    margin: 0 25px;
+    font-size: 1.6em;
+    transition: transform 0.4s ease, color 0.4s ease;
 }
 
 .social-links a:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.2);
+    color: #ff00ff;
 }
 
-/* Animations */
+/* New Animations */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(30px); }
+    0% { opacity: 0; transform: translateY(40px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes cardFadeIn {
-    0% { opacity: 0; transform: translateY(50px); }
+    0% { opacity: 0; transform: translateY(60px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
-    50% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); }
-    100% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
+    0% { box-shadow: 0 0 15px rgba(0, 255, 204, 0.6); }
+    50% { box-shadow: 0 0 30px rgba(255, 0, 255, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(0, 255, 204, 0.6); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 20px rgba(0, 255, 204, 0.8); }
+    100% { text-shadow: 0 0 30px rgba(255, 0, 255, 0.8); }
 }
