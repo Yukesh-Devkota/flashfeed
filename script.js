@@ -3,9 +3,9 @@ document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const href = this.getAttribute('href');
-        if (href && href !== '#') { // Check for valid href
+        if (href && href !== '#') {
             const target = document.querySelector(href);
-            if (target) { // Ensure target exists
+            if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
@@ -15,16 +15,12 @@ document.querySelectorAll('nav a').forEach(anchor => {
 // Follower count handling
 const followerNumber = document.getElementById('follower-number');
 if (followerNumber) {
-    // Facebook Graph API settings
-    const accessToken = 'EAAJyBBRddHgBOwcKP4lCqlbq33v5CVxPUk0JXvyhVbXLamXZB9meDKyD47wUWZCEBaAx7lO3xd2lXHX3DE33X5mjWFpBela8rYv65MyYzSnycGANqB6aoZBWYTT3JyfmKIiZBxSiXs4b7ZCKzBshIcbSN5hqUOAtZBDxJFRqDQGba77N6mTgbL74PmjjCmzYHKaokRupIVMVQImZAE2gsasS5esXukZD';
-    const pageId = 'Yukeshdevkota12'; // Replace with your actual Page ID if different
-    const fallbackCount = 164798; // Fallback if API fails (your provided count)
+    const fallbackCount = 164798; // Fallback if API fails
 
-    // Animation function
     function animateCount(targetCount) {
         let count = 0;
-        const duration = 2000; // Animation duration in milliseconds
-        const increment = targetCount / (duration / 50); // Steps per frame
+        const duration = 2000;
+        const increment = targetCount / (duration / 50);
 
         function updateCount() {
             count += increment;
@@ -32,42 +28,34 @@ if (followerNumber) {
                 count = targetCount;
                 clearInterval(counter);
             }
-            followerNumber.textContent = Math.floor(count).toLocaleString('en-US'); // Localized formatting
+            followerNumber.textContent = Math.floor(count).toLocaleString('en-US');
         }
 
         const counter = setInterval(updateCount, 50);
     }
 
-    // Fetch follower count from Facebook Graph API
     async function fetchFollowerCount() {
         try {
-            const response = await fetch(`https://graph.facebook.com/v19.0/${pageId}?fields=followers_count&access_token=${accessToken}`);
+            const response = await fetch('/api/followers');
             const data = await response.json();
-            if (data.error) {
-                console.error('API Error:', data.error.message);
-                return fallbackCount; // Use fallback on error
-            }
-            return data.followers_count || fallbackCount; // Return API count or fallback
+            if (data.error) throw new Error(data.error);
+            return data.count || fallbackCount;
         } catch (error) {
             console.error('Fetch Error:', error);
-            return fallbackCount; // Use fallback on network failure
+            return fallbackCount;
         }
     }
 
-    // Start animation when element is in view
     const observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
             fetchFollowerCount().then(targetCount => {
                 animateCount(targetCount);
             }).catch(() => {
-                animateCount(fallbackCount); // Ultimate fallback
+                animateCount(fallbackCount);
             });
-            observer.disconnect(); // Stop observing after starting
+            observer.disconnect();
         }
-    }, { threshold: 0.5 }); // Trigger when 50% of element is visible
+    }, { threshold: 0.5 });
 
     observer.observe(followerNumber);
 }
-
-// Security warning (console only, not affecting functionality)
-console.warn('Note: Exposing your access token client-side is insecure. For production, use a server-side API to hide the token.');
