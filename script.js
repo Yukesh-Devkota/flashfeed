@@ -7,7 +7,20 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// CTA button click effect
-document.querySelector('.cta').addEventListener('click', () => {
-    alert('Dive into FlashFeed’s universe!');
-});
+// Follower count animation (replace 500 with your actual follower count)
+const followerNumber = document.getElementById('follower-number');
+let count = 0;
+const targetCount = 164798; // Replace with your actual follower count from https://www.facebook.com/Yukeshdevkota12
+const duration = 2000; // Animation duration in milliseconds
+const increment = targetCount / (duration / 50);
+
+function animateCount() {
+    count += increment;
+    if (count >= targetCount) {
+        count = targetCount;
+        clearInterval(counter);
+    }
+    followerNumber.textContent = Math.floor(count).toLocaleString(); // Adds commas for readability
+}
+
+const counter = setInterval(animateCount, 50);
