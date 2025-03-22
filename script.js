@@ -1,4 +1,4 @@
-// Custom smooth scroll function
+// Custom smooth scroll function (unchanged)
 function smoothScroll(target, duration) {
     const start = window.pageYOffset;
     const distance = target.getBoundingClientRect().top;
@@ -36,32 +36,19 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// Toggle article content for "Read More"
+// Toggle article content for "Read More" (fixed)
 document.querySelectorAll('.read-more').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
+        // Find the specific article-content sibling of this link
         const article = this.nextElementSibling;
+        // Toggle visibility only for this article
         if (article.style.display === 'none' || article.style.display === '') {
             article.style.display = 'block';
             this.textContent = 'Read Less';
         } else {
             article.style.display = 'none';
             this.textContent = 'Read More';
-        }
-    });
-});
-
-// Toggle project content for "Learn More"
-document.querySelectorAll('.learn-more').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const project = this.nextElementSibling;
-        if (project.style.display === 'none' || project.style.display === '') {
-            project.style.display = 'block';
-            this.textContent = 'Learn Less';
-        } else {
-            project.style.display = 'none';
-            this.textContent = 'Learn More';
         }
     });
 });
