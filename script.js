@@ -12,7 +12,6 @@ function smoothScroll(target, duration) {
         if (timeElapsed < duration) requestAnimationFrame(animation);
     }
 
-    // Easing function for smooth acceleration/deceleration
     function ease(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return c / 2 * t * t + b;
@@ -23,7 +22,7 @@ function smoothScroll(target, duration) {
     requestAnimationFrame(animation);
 }
 
-// Apply smooth scroll to navigation links
+// Smooth scroll for navigation links
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -31,12 +30,41 @@ document.querySelectorAll('nav a').forEach(anchor => {
         if (href && href !== '#') {
             const target = document.querySelector(href);
             if (target) {
-                smoothScroll(target, 1000); // 1000ms = 1 second duration
+                smoothScroll(target, 1000);
             }
         }
     });
 });
 
+// Toggle article content for "Read More"
+document.querySelectorAll('.read-more').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const article = this.nextElementSibling;
+        if (article.style.display === 'none' || article.style.display === '') {
+            article.style.display = 'block';
+            this.textContent = 'Read Less';
+        } else {
+            article.style.display = 'none';
+            this.textContent = 'Read More';
+        }
+    });
+});
+
+// Toggle project content for "Learn More"
+document.querySelectorAll('.learn-more').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const project = this.nextElementSibling;
+        if (project.style.display === 'none' || project.style.display === '') {
+            project.style.display = 'block';
+            this.textContent = 'Learn Less';
+        } else {
+            project.style.display = 'none';
+            this.textContent = 'Learn More';
+        }
+    });
+});
 // Follower count handling
 const followerNumber = document.getElementById('follower-number');
 if (followerNumber) {
