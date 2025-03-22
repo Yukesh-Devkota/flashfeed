@@ -659,3 +659,47 @@ footer {
         padding: 0 20px;
     }
 }
+
+
+
+/* Add to the existing styles.css */
+
+/* Blog Article Content */
+.article-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    text-align: left;
+}
+
+.article-content h4 {
+    font-size: 1.6em;
+    color: #00ffcc;
+    margin-bottom: 15px;
+}
+
+.article-content p {
+    font-size: 1.1em;
+    color: #e0e0e0;
+}
+
+/* Project Details Content */
+.project-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    text-align: left;
+}
+
+.project-content h4 {
+    font-size: 1.6em;
+    color: #00ffcc;
+    margin-bottom: 15px;
+}
+
+.project-content p {
+    font-size: 1.1em;
+    color: #e0e0e0;
+}
