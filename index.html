@@ -142,17 +142,19 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <h2>Get in Touch</h2>
-            <p>Have a question or collaboration idea? Reach out!</p>
-            <form class="contact-form">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </section>
+      <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <h2>Get in Touch</h2>
+    <p>Have a question or collaboration idea? Reach out!</p>
+    <form class="contact-form" action="https://formspree.io/f/xvgkaozn" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <input type="hidden" name="_subject" value="New Contact Form Submission from FlashFeed">
+        <input type="hidden" name="_next" value="https://flashfeed-beta.vercel.app/#contact">
+        <button type="submit">Send</button>
+    </form>
+</section>
     </main>
     <footer>
         <div class="footer-content">
